@@ -21,13 +21,13 @@ const Products = () => {
   }, [category]);
   return (
     <div>
- <div className="lg:mx-12 md:mx-8 mx-2 mb-10">
+ <div className="lg:mx-12 md:mx-8 mx-8 mb-10">
       <div className=" text-lg mt-2">
         Categories {">"}
         <span className="font-bold "> {category}</span>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4 ">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4  ">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

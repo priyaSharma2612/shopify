@@ -33,7 +33,7 @@ const Cart = ({ open, onClose }) => {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[400px] bg-white z-50
+        className={`fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white z-50
             overflow-y-scroll
                 shadow-2xl transition-transform duration-300 ease-in-out
                 ${open ? "translate-x-0" : "translate-x-full"}`}

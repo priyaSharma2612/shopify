@@ -18,7 +18,7 @@ const NewArrivalSection = () => {
 
   },[]);
 
-  return ( <div className="lg:mx-12 md:mx-8 mx-2 mb-10">
+  return ( <div className="lg:mx-12 md:mx-8 mx-8 my-8">
       <h2 className="text-4xl font-semibold font-sans  text-black">
         New Arrivals
       </h2>

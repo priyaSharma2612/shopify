@@ -29,7 +29,7 @@ const AllProducts = () => {
     <div >
       {products.length > 0 ? (
         <>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4 lg:mx-12 md:mx-8 mx-2 mb-10">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4 lg:mx-12 md:mx-8 mx-4 mb-10">
             {products.map((product) => (
               <ProductCard key={product.id + 1 } product={product} />
             ))}

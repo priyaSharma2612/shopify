@@ -19,7 +19,7 @@ const TrendingProducts = () => {
   }, []);
 
   return (
-    <div className="lg:mx-12 md:mx-8 mx-2 mb-10">
+    <div className="lg:mx-12 md:mx-8 sm:mx-16 mx-6 mb-10">
       <h2 className="text-4xl font-semibold font-sans  text-black">
         Trending Products
       </h2>

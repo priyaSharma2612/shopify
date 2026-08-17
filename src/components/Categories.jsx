@@ -23,7 +23,7 @@ const Categories = () => {
 return (
   <div className="min-h-[calc(100vh-72px)] flex flex-col">
     <div className="flex-1">
-      <div className="mx-12">
+      <div className="lg:mx-12 md:mx-10 mx-8">
         <p className="p-4 text-xl">Categories</p>
 
         <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-5">

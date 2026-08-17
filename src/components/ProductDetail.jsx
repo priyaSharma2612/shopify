@@ -39,14 +39,13 @@ const ProductDetail = () => {
   }
 
   return (
-    <div>
-      <ProductDetailCard   product={product} />
+<div className="animate-fade-up delay-200">      <ProductDetailCard   product={product} />
 
-      <hr className=" border-gray-300 m-10" />
+      <hr className=" border-gray-300 m-8 " />
 
-      <h2 className="text-4xl font-medium font-lora m-10">Similar Products</h2>
+      <h2 className="text-4xl font-medium font-lora m-8 animate-fade-up delay-300">Similar Products</h2>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 m-10">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 m-8 animate-fade-up delay-500">
         {similarProducts.slice(0, 4).map((item) => (
           <ProductCard key={item.id} product={item} />
         ))}

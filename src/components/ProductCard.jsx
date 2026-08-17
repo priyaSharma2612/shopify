@@ -5,7 +5,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 const ProductCard = ({ product }) => {
-  const { cart, addToCart, increaseQuantity,decreaseQuantity } = useCart();
+  const { cart, addToCart, increaseQuantity, decreaseQuantity } = useCart();
   const navigate = useNavigate();
   const cartProduct = cart.find((item) => item.id === product.id);
   const handleScrollTop = () => {
@@ -17,7 +17,11 @@ const ProductCard = ({ product }) => {
   return (
     <div>
       <div>
-        <div className="border border-gray-300 w-full ">
+        <div
+          className="border border-gray-300 w-full transition-all duration-300 ease-out
+             hover:-translate-y-2
+             hover:shadow-xl"
+        >
           {" "}
           <div className="flex justify-center items-center cursor-pointer">
             <img
@@ -25,7 +29,7 @@ const ProductCard = ({ product }) => {
                 handleScrollTop();
                 navigate(`/product/${product.id}`);
               }}
-              className="w-[200px] h-[180px] object-contain hover:scale-110  "
+              className="w-[200px] h-[180px] object-contain transition-transform duration-500 ease-out hover:scale-110  "
               src={product.thumbnail}
               alt={product.alt}
             />
@@ -66,23 +70,34 @@ const ProductCard = ({ product }) => {
                 </p>
               </div>
 
-              {cartProduct && cartProduct.quantity>0 ? (
+              {cartProduct && cartProduct.quantity > 0 ? (
                 <div>
-                  <button  onClick={() => decreaseQuantity(product.id)} className="border px-2 rounded-full hover:bg-gray-100 text-2xl h-10 w-10 active:scale-95 ">
+                  <button
+                    onClick={() => decreaseQuantity(product.id)}
+                    className="border px-2 rounded-full hover:bg-gray-100 text-2xl h-10 w-10 active:scale-95 "
+                  >
                     -
                   </button>
 
-                   <span className=" text-center text-lg font-semibold text-gray-800 m-4">
-{cartProduct.quantity}</span>
+                  <span className=" text-center text-lg font-semibold text-gray-800 m-4">
+                    {cartProduct.quantity}
+                  </span>
 
-                  <button onClick={() => increaseQuantity(product.id)}className="border px-2  rounded-full hover:bg-gray-100 text-2xl h-10 w-10 active:scale-95 ">
+                  <button
+                    onClick={() => increaseQuantity(product.id)}
+                    className="border px-2  rounded-full hover:bg-gray-100 text-2xl h-10 w-10 active:scale-95 "
+                  >
                     +
                   </button>
                 </div>
               ) : (
-<button onClick={()=> addToCart(product)} className="w-16 h-10 bg-pink-500 text-white rounded py-2 px-4 flex justify-center active:scale-95  hover:bg-blue-500 ">
-                <HiOutlineShoppingCart size={20} />
-              </button>              )}
+                <button
+                  onClick={() => addToCart(product)}
+                  className="w-16 h-10  bg-pink-500 text-white rounded py-2 px-4 flex justify-center active:scale-95  hover:bg-blue-500 "
+                >
+                  <HiOutlineShoppingCart size={20} />
+                </button>
+              )}
               {/* <button onClick={()=> addToCart(product)} className="w-16 h-10 bg-pink-500 text-white rounded py-2 px-4 flex justify-center  hover:bg-blue-500 ">
                 <HiOutlineShoppingCart size={20} />
               </button> */}

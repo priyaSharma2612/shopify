@@ -8,7 +8,7 @@ const ProductDetailCard = ({ product }) => {
   const { cart, addToCart, increaseQuantity, decreaseQuantity,addToWishlist } = useCart();
 
   return (
-    <div className="lg:flex justify-around p-10 ">
+    <div className="lg:flex product-details-enter lg:flex-wrap gap-10 p-8 max-w-full overflow-hidden ">
       <div>
         <img
           className="w-80 h-80 object-cover"
@@ -45,7 +45,7 @@ const ProductDetailCard = ({ product }) => {
         </div>
 
         <div className="font-bold text-lg mt-2">About the product</div>
-        <p className="w-[450px] leading-5">
+        <p className="w-full max-w-[450px] break-words leading-5">
           {product.description}It is important to take care of the patient, to
           be followed by the patient, but it will happen at such a time that
           there is a lot of work and pain. For to come to the smallest detail,
@@ -90,7 +90,7 @@ const ProductDetailCard = ({ product }) => {
                 <p>{review.rating}</p>
               </div>
 
-              <p className="mb-5 text-gray-600 w-96">
+              <p className="mb-5 text-gray-600 w-full max-w-96 break-words">
                 {/* I found the product not long lasting. The quality also seemed a bit downgraded. I don't think its value for money. */}
                 {review.comment} {review.comment} {review.comment}{" "}
                 {review.comment}

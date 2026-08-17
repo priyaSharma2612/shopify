@@ -17,10 +17,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-const {cart,wishlist} = useCart();
+  const { cart, wishlist } = useCart();
   return (
     <>
-      <nav className="flex items-center justify-between bg-white px-5 py-4 shadow-lg sticky top-0 z-50">
+      <nav className="flex navbar-enter items-center justify-between bg-white px-5 py-4 shadow-lg sticky top-0 z-50">
         <h1 className="text-2xl lg:text-4xl font-semibold font-sans">
           Shopify
         </h1>
@@ -44,36 +44,24 @@ const {cart,wishlist} = useCart();
           <a className="font-bold text-lg" href="/categories">
             Categories
           </a>
-          <AccountDropdown/>
-          {/* <div className="flex items-center gap-2">
-            <img
-              className="w-10 h-10 rounded-full"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnfFCMx1nnSRsT7_7pcH34pIPgnjei0HWDjmMZ8cITVg&s=10"
-              alt="Profile"
-            />
-            <p className="text-gray-500 font-medium">atuny0</p>
-          </div> */}
+          <AccountDropdown />
+
           <div className="relative">
             <HiOutlineShoppingCart
-            size={25}
-            className="cursor-pointer"
-            onClick={() => setCartOpen(true)}
-          />
-           <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-    {cart.length}
-  </span>
+              size={25}
+              className="cursor-pointer heart-pop"
+              onClick={() => setCartOpen(true)}
+            />
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {cart.length}
+            </span>
           </div>
-          {/*  */}
-          {/* <HiOutlineShoppingCart className="cursor-pointer" onClick={()=>{
-            // navigate("/cart");
-            setCartOpen(true);
-
-          }} size={25} /> */}
+        
           <div className="relative">
-          <FiHeart onClick={()=> navigate("/wishlist")} size={25} />
-  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-    {wishlist.length}
-  </span>
+            <FiHeart className="cursor-pointer heart-pop" onClick={() => navigate("/wishlist")} size={25} />
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {wishlist.length}
+            </span>
           </div>
         </div>
 
@@ -89,7 +77,7 @@ const {cart,wishlist} = useCart();
       )}
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-screen w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-screen min-w-full  bg-white shadow-lg z-50 transform transition-transform duration-300 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -100,25 +88,46 @@ const {cart,wishlist} = useCart();
         </div>
 
         <div className="flex flex-col gap-6 p-6">
-          <a href="" onClick={() => setOpen(false)}>
+          <a className="font-bold text-lg" href=" /allProducts" onClick={() => setOpen(false)}>
             Products
           </a>
-
-          <a href="" onClick={() => setOpen(false)}>
+          <a className="font-bold text-lg" href="/categories" onClick={() => setOpen(false)}>
             Categories
           </a>
+<AccountDropdown/>
+<div className="flex flex-col gap-4">
+  {/* Cart */}
+  <div className="relative w-fit">
+    <HiOutlineShoppingCart
+      size={25}
+      className="cursor-pointer heart-pop"
+      onClick={() => {
+        setCartOpen(true);
+        setOpen(false);
+      }}
+    />
 
-          <div className="flex items-center gap-2">
-            <img
-              className="w-10 h-10 rounded-full"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnfFCMx1nnSRsT7_7pcH34pIPgnjei0HWDjmMZ8cITVg&s=10"
-              alt="Profile"
-            />
-            <p>atuny0</p>
-          </div>
+    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+      {cart.length}
+    </span>
+  </div>
 
-          <HiOutlineShoppingCart size={25} />
-          <HiOutlineMoon size={25} />
+  {/* Wishlist */}
+  <div className="relative w-fit">
+    <FiHeart
+      size={25}
+      className="cursor-pointer heart-pop"
+      onClick={() => {
+        navigate("/wishlist");
+        setOpen(false);
+      }}
+    />
+
+    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+      {wishlist.length}
+    </span>
+  </div>
+</div>
         </div>
       </div>
       <Cart open={cartOpen} onClose={() => setCartOpen(false)} />
