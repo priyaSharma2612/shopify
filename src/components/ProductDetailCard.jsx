@@ -5,7 +5,7 @@ import { FiHeart } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
 
 const ProductDetailCard = ({ product }) => {
-  const { cart, addToCart, increaseQuantity, decreaseQuantity,addToWishlist } = useCart();
+  const {addToCart,addToWishlist } = useCart();
 
   return (
     <div className="lg:flex product-details-enter lg:flex-wrap gap-10 p-8 max-w-full overflow-hidden ">

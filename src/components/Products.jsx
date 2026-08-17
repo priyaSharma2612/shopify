@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getProductCategories, getProductsByCategory } from "../api/productApi";
+import {  getProductsByCategory } from "../api/productApi";
 import ProductCard from "./ProductCard";
 import Footer from "../components/Footer";
 

@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("wishlist",JSON.stringify(wishlist));
   },[wishlist]);
 
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
   const { enqueueSnackbar } = useSnackbar();
   const addToCart = (product) => {
     setCart((prevCart) => {

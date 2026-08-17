@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   HiOutlineShoppingCart,
   HiOutlineSearch,
-  HiOutlineMoon,
   HiOutlineMenu,
   HiOutlineX,
 } from "react-icons/hi";
