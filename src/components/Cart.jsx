@@ -100,6 +100,7 @@ const Cart = ({ open, onClose }) => {
                   <div className="font-bold ml-auto">
                     ${item.price}
 <LuTrash2
+onClick={()=>removeFromCart(item.id)}
   size={17}
   className="text-gray-400 hover:text-red-500 cursor-pointer transition ml-auto"
 />
