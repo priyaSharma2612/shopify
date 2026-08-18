@@ -1,106 +1,233 @@
 import React from "react";
 import { Rating } from "@smastrom/react-rating";
-import { HiOutlineShoppingCart, HiOutlineShoppingBag } from "react-icons/hi";
+import {
+  HiOutlineShoppingCart,
+  HiOutlineShoppingBag,
+} from "react-icons/hi";
 import { FiHeart } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
 
 const ProductDetailCard = ({ product }) => {
-  const {addToCart,addToWishlist } = useCart();
+  const { addToCart, addToWishlist } = useCart();
+
+  const originalPrice = (
+    product.price /
+    (1 - product.discountPercentage / 100)
+  ).toFixed(2);
 
   return (
-    <div className="lg:flex product-details-enter lg:flex-wrap gap-10 p-8 max-w-full overflow-hidden ">
-      <div>
-        <img
-          className="w-80 h-80 object-cover"
-          src={product.thumbnail}
-          alt=""
-        />
-      </div>
+    <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
 
-      <div>
-        <h2 className="text-2xl">{product.title}</h2>
-        <div className="flex gap-1 text-xl">
-          <Rating style={{ maxWidth: 60 }} value={product.rating} readOnly />
-          <h2 className="text-gray-600 font-semibold">{product.rating}</h2>
-        </div>
-        <h2 className="font-medium text-blue-500 text-xl"> $12.99</h2>
-        <div className="flex gap-1">
-          <h4 className="mr-2 text-sm line-through opacity-70 ">
-            ${product.price}
-          </h4>
-          <h4 className="text-sm font-bold">-{product.discountPercentage}%</h4>
-        </div>
-        <div className="flex gap-1">
-          <h2 className="pr-2 text-lg font-bold">Brand</h2>
-          <h4 className="text-lg ">{product.brand}</h4>
+      <div className="grid lg:grid-cols-2 gap-10 p-6 md:p-10">
+
+        {/* Product Image */}
+        <div className="bg-gray-50 rounded-2xl min-h-[400px] flex items-center justify-center relative overflow-hidden">
+
+          <span className="absolute top-5 left-5 bg-pink-500 text-white px-3 py-1.5 rounded-full text-sm font-bold">
+            -{Math.round(product.discountPercentage)}%
+          </span>
+
+          <img
+            className="w-[350px] h-[350px] object-contain transition-transform duration-500 hover:scale-110"
+            src={product.thumbnail}
+            alt={product.title}
+          />
         </div>
 
-        <div className="flex gap-1">
-          <h2 className="pr-2 text-lg font-bold">Category</h2>
-          <h4 className="text-lg ">{product.category}</h4>
-        </div>
-        <div className="flex gap-1">
-          <h2 className="pr-2 text-lg font-bold">Stock</h2>
-          <h4 className="text-lg ">{product.stock}</h4>
-        </div>
+        {/* Product Information */}
+        <div className="flex flex-col justify-center">
 
-        <div className="font-bold text-lg mt-2">About the product</div>
-        <p className="w-full max-w-[450px] break-words leading-5">
-          {product.description}It is important to take care of the patient, to
-          be followed by the patient, but it will happen at such a time that
-          there is a lot of work and pain. For to come to the smallest detail,
-          no one should practice any kind of work unless he derives some benefit
-          from it. Do not be angry with the pain in the reprimand in the
-          pleasure he wants to be a hair from the pain in the hope that there is
-          no breeding. Unless they are blinded by lust, they do not come forth;
-          they are in fault who abandon their duties and soften their hearts,
-          that is, their labors.
-        </p>
+          <p className="text-sm uppercase tracking-widest text-blue-600 font-bold mb-2">
+            {product.category}
+          </p>
 
-        <div className="flex gap-1 items-center mt-3">
-          <button
-            onClick={() => addToCart(product)}
-            className="w-14 hover:bg-pink-700 bg-pink-500 text-white rounded-sm py-2 px-4"
-          >
-            <HiOutlineShoppingCart size={16} />
-          </button>
-          <button className="w-14 hover:bg-blue-700 bg-blue-500 text-white rounded-sm py-2 px-4">
-            <HiOutlineShoppingBag size={16} />
-          </button>
-          <button onClick={()=>addToWishlist(product)} className="w-14 hover:bg-yellow-700 bg-yellow-500 text-white rounded-sm py-2 px-4">
-            <FiHeart size={16} />
-          </button>
-        </div>
-      </div>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
+            {product.title}
+          </h1>
 
-      <div>
-        <h2 className="text-2xl font-bold my-5">Reviews</h2>
+          {/* Rating */}
+          <div className="flex items-center gap-2 mt-4">
+            <Rating
+              style={{ maxWidth: 90 }}
+              value={product.rating}
+              readOnly
+            />
 
-        {product.reviews?.length > 0 ? (
-          product.reviews.map((review, index) => (
-            <div key={index}>
-              <h3 className="font-bold">{review.reviewerName}</h3>
+            <span className="font-semibold text-gray-600">
+              {product.rating}
+            </span>
+          </div>
 
-              <div className="flex items-center gap-2 ">
-                <Rating
-                  style={{ maxWidth: 50 }}
-                  value={review.rating}
-                  readOnly
-                />
-                <p>{review.rating}</p>
-              </div>
+          {/* Price */}
+          <div className="flex items-center gap-3 mt-5">
+            <span className="text-3xl font-extrabold text-gray-900">
+              ${product.price}
+            </span>
 
-              <p className="mb-5 text-gray-600 w-full max-w-96 break-words">
-                {/* I found the product not long lasting. The quality also seemed a bit downgraded. I don't think its value for money. */}
-                {review.comment} {review.comment} {review.comment}{" "}
-                {review.comment}
+            <span className="text-gray-400 line-through">
+              ${originalPrice}
+            </span>
+
+            <span className="bg-pink-50 text-pink-600 px-2 py-1 rounded-full text-xs font-bold">
+              SAVE {Math.round(product.discountPercentage)}%
+            </span>
+          </div>
+
+          {/* Product Info */}
+          <div className="grid grid-cols-2 gap-3 mt-6">
+
+            <div className="bg-gray-50 rounded-xl p-4">
+              <p className="text-xs text-gray-500 uppercase">
+                Brand
+              </p>
+              <p className="font-bold text-gray-900 mt-1">
+                {product.brand || "No brand"}
               </p>
             </div>
-          ))
-        ) : (
-          <p>No Reviews Available.</p>
-        )}
+
+            <div className="bg-gray-50 rounded-xl p-4">
+              <p className="text-xs text-gray-500 uppercase">
+                Stock
+              </p>
+              <p className="font-bold text-green-600 mt-1">
+                {product.stock} available
+              </p>
+            </div>
+
+          </div>
+
+          {/* Description */}
+          <div className="mt-6">
+            <h2 className="text-lg font-bold text-gray-900 mb-2">
+              About this product
+            </h2>
+
+            <p className="text-gray-500 leading-7">
+              {product.description}
+            </p>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-3 mt-7">
+
+            <button
+              onClick={() => addToCart(product)}
+              className="
+                flex-1 min-w-[150px]
+                bg-blue-600
+                text-white
+                py-3
+                px-6
+                rounded-xl
+                font-semibold
+                flex items-center justify-center gap-2
+                hover:bg-blue-700
+                hover:-translate-y-0.5
+                shadow-lg shadow-blue-100
+                transition-all
+              "
+            >
+              <HiOutlineShoppingCart size={21} />
+              Add to Cart
+            </button>
+
+            <button
+              className="
+                bg-gray-900
+                text-white
+                px-5
+                rounded-xl
+                hover:bg-gray-800
+                transition
+              "
+            >
+              <HiOutlineShoppingBag size={21} />
+            </button>
+
+            <button
+              onClick={() => addToWishlist(product)}
+              className="
+                bg-pink-50
+                text-pink-500
+                px-5
+                rounded-xl
+                hover:bg-pink-100
+                transition
+              "
+            >
+              <FiHeart size={21} />
+            </button>
+
+          </div>
+
+        </div>
       </div>
+
+      {/* Reviews */}
+      <div className="border-t border-gray-100 p-6 md:p-10">
+
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-extrabold text-gray-900">
+            Customer Reviews
+          </h2>
+
+          <span className="text-sm text-gray-500">
+            {product.reviews?.length || 0} reviews
+          </span>
+        </div>
+
+        {product.reviews?.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+            {product.reviews.map((review, index) => (
+              <div
+                key={index}
+                className="
+                  bg-gray-50
+                  rounded-2xl
+                  p-5
+                  border border-gray-100
+                "
+              >
+                <div className="flex items-center justify-between">
+
+                  <h3 className="font-bold text-gray-900">
+                    {review.reviewerName}
+                  </h3>
+
+                  <span className="text-xs text-gray-400">
+                    Verified
+                  </span>
+
+                </div>
+
+                <div className="flex items-center gap-2 mt-2">
+                  <Rating
+                    style={{ maxWidth: 65 }}
+                    value={review.rating}
+                    readOnly
+                  />
+
+                  <span className="text-sm font-semibold text-gray-600">
+                    {review.rating}
+                  </span>
+                </div>
+
+                <p className="mt-3 text-gray-600 leading-6">
+                  {review.comment}
+                </p>
+              </div>
+            ))}
+
+          </div>
+        ) : (
+          <p className="text-gray-500">
+            No reviews available.
+          </p>
+        )}
+
+      </div>
+
     </div>
   );
 };

@@ -20,9 +20,13 @@ const Navbar = () => {
   return (
     <>
       <nav className="flex navbar-enter items-center justify-between bg-white px-5 py-4 shadow-lg sticky top-0 z-50">
-        <h1 className="text-2xl lg:text-4xl font-semibold font-sans">
-          Shopify
-        </h1>
+       <h1
+  onClick={() => navigate("/")}
+  className="text-2xl lg:text-4xl font-extrabold tracking-tight cursor-pointer"
+>
+  <span className="text-blue-600">Shop</span>
+  <span className="text-pink-500">ify</span>
+</h1>
 
         <div className="w-96 hidden lg:flex">
           <input
@@ -51,14 +55,14 @@ const Navbar = () => {
               className="cursor-pointer heart-pop"
               onClick={() => setCartOpen(true)}
             />
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
               {cart.length}
             </span>
           </div>
         
           <div className="relative">
             <FiHeart className="cursor-pointer heart-pop" onClick={() => navigate("/wishlist")} size={25} />
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-blue-600 font-bold text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
               {wishlist.length}
             </span>
           </div>

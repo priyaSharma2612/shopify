@@ -40,7 +40,15 @@ const Cart = ({ open, onClose }) => {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b">
-          <h2 className="text-2xl font-bold">Your Cart</h2>
+<div>
+  <h2 className="text-2xl font-extrabold text-gray-900">
+    Your Cart
+  </h2>
+
+  <p className="text-sm text-gray-500">
+    {cart.length} {cart.length === 1 ? "item" : "items"}
+  </p>
+</div>
 
           <button
             onClick={onClose}
@@ -58,12 +66,12 @@ const Cart = ({ open, onClose }) => {
             
           cart.map((item) => (
             <div key={item.id}>
-              <div className="border border-gray-200 h-28  m-4">
+<div className="bg-gray-50 rounded-2xl p-3 m-4 border border-gray-100">
                 <div className="flex items-center justify-start gap-10 mx-6">
                   <img
                     className="w-24 h-24  object-cover"
                     src={item.thumbnail}
-                    alt=""
+                    alt="{item.title}"
                   />
                   <div>
                     <p className="font-bold text-[12px] leading-[13px] line-clamp-2 py-1 ">{item.title}</p>
@@ -91,7 +99,10 @@ const Cart = ({ open, onClose }) => {
 
                   <div className="font-bold ml-auto">
                     ${item.price}
-                    <LuTrash2 className="ml-auto" onClick={()=>removeFromCart(item.id)} size={15} color="red" />
+<LuTrash2
+  size={17}
+  className="text-gray-400 hover:text-red-500 cursor-pointer transition ml-auto"
+/>
                   </div>
                 </div>
               </div>
@@ -110,12 +121,25 @@ const Cart = ({ open, onClose }) => {
     </span>
   </div>
 
-  <button onClick={handleCheckout}
-    className="w-full bg-black text-white py-3 mt-4 rounded-lg
-               hover:bg-gray-800 active:scale-95 transition"
-  >
-    Checkout
-  </button>
+ <button
+  onClick={handleCheckout}
+  className="
+    w-full
+    bg-blue-600
+    text-white
+    py-3
+    mt-4
+    rounded-xl
+    font-semibold
+    hover:bg-blue-700
+    active:scale-[0.98]
+    transition
+    shadow-lg shadow-blue-100
+  "
+>
+  Checkout
+</button>
+
 </div>
       </div>
     </>

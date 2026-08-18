@@ -7,7 +7,7 @@ import Policies from "./components/Policies";
 import TrendingProducts from "./components/TrendingProducts";
 function App() {
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full bg-[#f7f8fc]">
       <Content />
       <Policies />
       <TrendingProducts />

@@ -17,16 +17,34 @@ const AccountDropdown = () => {
 
          {/* Account  */}
           <button 
-            className="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-100"
+className="
+  flex items-center gap-3
+  w-full
+  px-4 py-3
+  text-left
+  text-gray-700
+  hover:bg-blue-50
+  hover:text-blue-600
+  
+"
           >
-            <FaUserCircle />
+            <FaUserCircle  />
             <span>Account</span>
           </button>
 
           {/* Wishlist */}
           <button
             onClick={() => navigate("/wishlist")}
-            className="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-100"
+className="
+  flex items-center gap-3
+  w-full
+  px-4 py-3
+  text-left
+  text-gray-700
+  hover:bg-blue-50
+  hover:text-blue-600
+  transition
+"
           >
             <FaHeart />
             <span>Wishlist</span>
@@ -37,7 +55,16 @@ const AccountDropdown = () => {
             // onClick={() => {
             //   console.log("Logout");
             // }}
-            className="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-100"
+className="
+  flex items-center gap-3
+  w-full
+  px-4 py-3
+  text-left
+  text-gray-700
+  hover:bg-blue-50
+  hover:text-blue-600
+  transition
+"
           >
             <FaSignOutAlt />
             <span>Logout</span>

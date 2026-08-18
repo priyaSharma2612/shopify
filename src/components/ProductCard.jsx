@@ -18,25 +18,42 @@ const ProductCard = ({ product }) => {
     <div>
       <div>
         <div
-          className="border border-gray-300 w-full transition-all duration-300 ease-out
-             hover:-translate-y-2
-             hover:shadow-xl"
+          className="
+bg-white
+rounded-2xl
+overflow-hidden
+border border-gray-300
+shadow-sm
+w-full
+hover:-translate-y-2
+hover:shadow-xl
+hover:shadow-blue-100
+"
+
         >
           {" "}
           <div className="flex justify-center items-center cursor-pointer">
-            <img
-              onClick={() => {
-                handleScrollTop();
-                navigate(`/product/${product.id}`);
-              }}
-              className="w-[200px] h-[180px] object-contain transition-transform duration-500 ease-out hover:scale-110  "
-              src={product.thumbnail}
-              alt={product.alt}
-            />
+<img
+  onClick={() => {
+    handleScrollTop();
+    navigate(`/product/${product.id}`);
+  }}
+  className="
+    w-[200px]
+    h-[200px]
+    object-contain
+    transition-transform
+    duration-500
+    hover:scale-110
+  "
+  src={product.thumbnail}
+  alt={product.title}
+/>
+
           </div>
           <hr className="w-full  border-gray-300 my-2 " />
           <div className="px-4">
-            <p className="text-gray-500 text-[14px] font-medium ">
+            <p className="text-gray-600 text-xs font-bold uppercase tracking-wider ">
               {product.category}
             </p>
             <p
@@ -56,18 +73,20 @@ const ProductCard = ({ product }) => {
                 {product.rating}
               </p>
             </div>
-            <p className="font-medium text-blue-500 text-xl">
+            <p className="font-bold text-blue-600 text-xl">
               ${product.price}
             </p>
 
             <div className="flex flex-wrap items-start justify-between pb-4">
               <div className="flex gap-2 items-center">
-                <p className="line-through text-sm opacity-70">
-                  ${product.price}
-                </p>
-                <p className="text-[14px] font-semibold text-black">
-                  -{product.discountPercentage}%
-                </p>
+<p className="line-through text-sm text-gray-400">
+  ${(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}
+</p>
+
+               <span className="bg-pink-50 text-pink-600 px-2.5 py-1 rounded-full text-xs font-bold">
+  -{Math.round(product.discountPercentage)}%
+</span>
+
               </div>
 
               {cartProduct && cartProduct.quantity > 0 ? (
@@ -91,12 +110,24 @@ const ProductCard = ({ product }) => {
                   </button>
                 </div>
               ) : (
-                <button
-                  onClick={() => addToCart(product)}
-                  className="w-16 h-10  bg-pink-500 text-white rounded py-2 px-4 flex justify-center active:scale-95  hover:bg-blue-500 "
-                >
-                  <HiOutlineShoppingCart size={20} />
-                </button>
+               <button
+  onClick={() => addToCart(product)}
+  className="
+    w-14 h-14
+    bg-blue-600
+    text-white
+    rounded-full
+    flex items-center justify-center
+    shadow-md shadow-blue-200
+    hover:bg-blue-700
+    hover:scale-105
+    active:scale-95
+    transition-all
+  "
+>
+  <HiOutlineShoppingCart size={20} />
+</button>
+
               )}
               {/* <button onClick={()=> addToCart(product)} className="w-16 h-10 bg-pink-500 text-white rounded py-2 px-4 flex justify-center  hover:bg-blue-500 ">
                 <HiOutlineShoppingCart size={20} />

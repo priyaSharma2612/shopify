@@ -7,14 +7,28 @@ const Policies = () => {
       {collection.map((policy) => (
         <div
           key={policy.id}
-          className="bg-gray-100 w-full h-[75px] flex gap-4 items-center px-5 and py-3 rounded-md"
+          className="
+  bg-gray-100
+    border border-gray-200
+    w-full
+    min-h-[90px]
+    flex gap-4
+    items-center
+    px-5 py-4
+    rounded-2xl
+    shadow-sm
+    hover:shadow-md
+    transition-shadow
+  "
         >
-          <div className="">
-            <img className="h-[40px] w-[40px]" src={policy.img} alt="" />
+          <div className="h-14 w-14 shrink-0 rounded-xl bg-blue-50 flex items-center justify-center">
+            <img className="h-9 w-9 object-contain" src={policy.img} alt="" />
           </div>
+
           <div>
-            <p className="text-black text-xl">{policy.title}</p>
-            <p className="text-gray-600">{policy.description}</p>
+            <p className="text-lg font-bold text-gray-900">{policy.title}</p>
+
+            <p className="text-sm text-gray-600">{policy.description}</p>
           </div>
         </div>
       ))}
